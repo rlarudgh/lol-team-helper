@@ -1,38 +1,44 @@
-export interface RiotSummoner {
-  id: string
-  accountId: string
-  puuid: string
-  name: string
-  profileIconId: number
-  revisionDate: number
-  summonerLevel: number
+export interface RiotGetPUUIDResponse {
+  puuid: string;
+  gameName: string;
+  tagLine: string;
 }
 
-export interface RiotLeagueEntry {
-  leagueId: string
-  summonerId: string
-  summonerName: string
-  queueType: string
-  tier: string
-  rank: string
-  leaguePoints: number
-  wins: number
-  losses: number
-  hotStreak: boolean
-  veteran: boolean
-  freshBlood: boolean
-  inactive: boolean
-  miniSeries?: {
-    target: number
-    wins: number
-    losses: number
-    progress: string
-  }
-}
+export type RankType = "RANKED_FLEX_SR" | "RANKED_SOLO_5x5";
 
-export interface RiotApiError {
-  status: {
-    message: string
-    status_code: number
-  }
+export type Tier =
+  | "IRON"
+  | "BRONZE"
+  | "SILVER"
+  | "GOLD"
+  | "PLATINUM"
+  | "DIAMOND"
+  | "MASTER"
+  | "GRANDMASTER"
+  | "CHALLENGER";
+
+export type Rank = "I" | "II" | "III" | "IV";
+
+export type League = {
+  leagueId: string;
+  queueType: RankType;
+  tier: Tier;
+  rank: Rank;
+  puuid: string;
+  leaguePoints: number;
+  wins: number;
+  losses: number;
+  veteran: boolean;
+  inactive: boolean;
+  freshBlood: boolean;
+  hotStreak: boolean;
+};
+
+export type RiotGetSummonersTier = League[];
+
+export interface RiotProfileInfo {
+  puuid: string;
+  profileIconId: number;
+  revisionDate: number | Date;
+  summonerLevel: number;
 }
