@@ -74,6 +74,16 @@ export async function GET(request: NextRequest) {
       : flexTier?.leaguePoints;
     const rank = soloTier ? soloTier.rank : flexTier?.rank;
 
+    if (!puuid) {
+      return NextResponse.json(
+        {
+          error:
+            "Failed to fetch summoner data. Please check the summoner name.",
+        },
+        { status: 404 }
+      );
+    }
+
     const info = await riotClient.getSummonersInfo(puuid);
 
     const player: Player = {
