@@ -47,7 +47,7 @@ export class RiotApiClient {
     const [gameName, tagLine] = summonerName.split("#");
 
     return this.makeRequest<import("../types/riot-api").RiotGetPUUIDResponse>(
-      `/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`
+      `/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine ?? "KR1"}`
     );
   }
 

@@ -73,11 +73,7 @@ export function PlayerCard({
               <p className="font-semibold text-sm truncate">{player.summonerName}</p>
               {player.position && (
                 <span className="text-xs bg-accent text-accent-foreground px-2 py-1 rounded">
-                  {player.position === "TOP" && "탑"}
-                  {player.position === "JUNGLE" && "정글"}
-                  {player.position === "MID" && "미드"}
-                  {player.position === "ADC" && "원딜"}
-                  {player.position === "SUPPORT" && "서포터"}
+                  {player.position}
                 </span>
               )}
             </div>
