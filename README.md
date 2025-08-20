@@ -27,7 +27,6 @@ RIOT_API_KEY=your_riot_api_key
 ## 소환사 정보 검색 및 저장
 
 1. `/app/api/summoner/route.ts`에서 Riot API를 통해 소환사 정보를 조회합니다.
-2. 조회된 player 객체를 Supabase DB의 `players` 테이블에 저장합니다.
 
 ## Supabase DB 연동
 
