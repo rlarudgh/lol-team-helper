@@ -8,20 +8,25 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search, Loader2, Plus } from "lucide-react";
 import type { Player } from "@/shared/types";
+import { useForm } from "@/hooks/use-form";
 
 interface SummonerSearchFormProps {
   onPlayerAdd: (player: Player) => void;
 }
 
 export function SummonerSearchForm({ onPlayerAdd }: SummonerSearchFormProps) {
-  const [summonerName, setSummonerName] = useState("");
+  const {
+    state,
+    handleChange,
+    setState: setSummonerName,
+  } = useForm({ summonerName: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchResult, setSearchResult] = useState<Player | null>(null);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!summonerName.trim()) return;
+    if (!state.summonerName.trim()) return;
 
     setIsLoading(true);
     setError(null);
@@ -29,14 +34,11 @@ export function SummonerSearchForm({ onPlayerAdd }: SummonerSearchFormProps) {
 
     try {
       const apiUrl = `/api/summoner?name=${encodeURIComponent(
-        summonerName.trim()
+        state.summonerName.trim()
       )}`;
-      console.log("[v0] API 호출 URL:", window.location.origin + apiUrl);
 
       const response = await fetch(apiUrl);
       const data = await response.json();
-
-      console.log("[v0] API 응답:", { status: response.status, data });
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to fetch summoner data");
@@ -55,7 +57,7 @@ export function SummonerSearchForm({ onPlayerAdd }: SummonerSearchFormProps) {
     if (searchResult) {
       onPlayerAdd(searchResult);
       setSearchResult(null);
-      setSummonerName("");
+      setSummonerName({ summonerName: "" });
     }
   };
 
@@ -69,11 +71,12 @@ export function SummonerSearchForm({ onPlayerAdd }: SummonerSearchFormProps) {
           <Input
             type="text"
             placeholder="소환사명을 입력하세요"
-            value={summonerName}
-            onChange={(e) => setSummonerName(e.target.value)}
+            value={state.summonerName}
+            name="summonerName"
+            onChange={handleChange}
             disabled={isLoading}
           />
-          <Button type="submit" disabled={isLoading || !summonerName.trim()}>
+          <Button type="submit" disabled={isLoading || !state.summonerName.trim()}>
             {isLoading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
@@ -115,7 +118,6 @@ export function SummonerSearchForm({ onPlayerAdd }: SummonerSearchFormProps) {
 
         <div className="text-xs text-muted-foreground text-center">
           <p>Riot API를 사용하여 실시간 소환사 정보를 가져옵니다.</p>
-          <p>API 키가 설정되지 않은 경우 이 기능을 사용할 수 없습니다.</p>
         </div>
       </CardContent>
     </Card>

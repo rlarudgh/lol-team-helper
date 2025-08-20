@@ -9,8 +9,6 @@ import { TeamBalanceIndicator } from "@/features/team-assignment/ui/team-balance
 import { TeamStrengthIndicator } from "@/features/team-assignment/ui/team-strength-indicator";
 import { PlayerTransferControls } from "@/features/team-assignment/ui/player-transfer-controls";
 import { SummonerSearchForm } from "@/features/summoner-search/ui/summoner-search-form";
-import { TierStatistics } from "@/features/tier-analysis/ui/tier-statistics";
-import { TeamComparison } from "@/features/tier-analysis/ui/team-comparison";
 import { TeamPositionsDisplay } from "@/features/position-assignment/ui/team-positions-display";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -298,21 +296,7 @@ export function MatchBoard() {
         )}
       </div>
 
-      {/* Analytics Section */}
-      {showAnalytics && (
-        <div className="grid md:grid-cols-3 gap-4">
-          <TierStatistics players={redTeam} title="레드팀" />
-          <TeamComparison redTeam={redTeam} blueTeam={blueTeam} />
-          <TierStatistics players={blueTeam} title="블루팀" />
-        </div>
-      )}
-
       <TeamStrengthIndicator redTeam={redTeam} blueTeam={blueTeam} />
-
-      {/* Team Balance Indicator */}
-      {(redTeam.length > 0 || blueTeam.length > 0) && (
-        <TeamBalanceIndicator redTeam={redTeam} blueTeam={blueTeam} />
-      )}
 
       {/* Player Transfer Controls */}
       <Card>
@@ -341,6 +325,48 @@ export function MatchBoard() {
             </p>
           </CardContent>
         </Card>
+      )}
+
+      {/* Unassigned Players */}
+      {unassignedPlayers.length > 0 && (
+        <SortableTeamZone
+          players={unassignedPlayers}
+          onDrop={handleDropToUnassigned}
+          onDragOver={(position) => handleDragOver("unassigned", position)}
+          onDragLeave={() => handleDragLeave()}
+          canDrop={true}
+          isOver={dragState.dragOverTeam === "unassigned"}
+          teamType="unassigned"
+        >
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-center">
+                미배정 플레이어 ({unassignedPlayers.length})
+                {dragState.dragOverTeam === "unassigned" && (
+                  <span className="ml-2 text-xs opacity-75">
+                    드롭하여 미배정으로 이동
+                  </span>
+                )}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-h-[200px]">
+                {unassignedPlayers.map((player) => (
+                  <DraggablePlayerCard
+                    key={player.id}
+                    player={player}
+                    isSelected={selectedPlayer?.id === player.id}
+                    onClick={() => handlePlayerSelect(player)}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                    onPositionChange={handlePositionChange}
+                    showPositionSelector={true}
+                  />
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </SortableTeamZone>
       )}
 
       {/* Teams */}
@@ -446,46 +472,9 @@ export function MatchBoard() {
         </SortableTeamZone>
       </div>
 
-      {/* Unassigned Players */}
-      {unassignedPlayers.length > 0 && (
-        <SortableTeamZone
-          players={unassignedPlayers}
-          onDrop={handleDropToUnassigned}
-          onDragOver={(position) => handleDragOver("unassigned", position)}
-          onDragLeave={() => handleDragLeave()}
-          canDrop={true}
-          isOver={dragState.dragOverTeam === "unassigned"}
-          teamType="unassigned"
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-center">
-                미배정 플레이어 ({unassignedPlayers.length})
-                {dragState.dragOverTeam === "unassigned" && (
-                  <span className="ml-2 text-xs opacity-75">
-                    드롭하여 미배정으로 이동
-                  </span>
-                )}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-h-[200px]">
-                {unassignedPlayers.map((player) => (
-                  <DraggablePlayerCard
-                    key={player.id}
-                    player={player}
-                    isSelected={selectedPlayer?.id === player.id}
-                    onClick={() => handlePlayerSelect(player)}
-                    onDragStart={handleDragStart}
-                    onDragEnd={handleDragEnd}
-                    onPositionChange={handlePositionChange}
-                    showPositionSelector={true}
-                  />
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </SortableTeamZone>
+      {/* Team Balance Indicator */}
+      {(redTeam.length > 0 || blueTeam.length > 0) && (
+        <TeamBalanceIndicator redTeam={redTeam} blueTeam={blueTeam} />
       )}
     </div>
   );

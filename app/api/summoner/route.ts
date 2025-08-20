@@ -1,6 +1,9 @@
+"use server";
+
 import { type NextRequest, NextResponse } from "next/server";
 import { RiotApiClient } from "@/shared/api/riot-client";
 import type { Player, Tier } from "@/shared/types";
+import type { League } from "@/shared/types/riot-api";
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
@@ -64,7 +67,12 @@ export async function GET(request: NextRequest) {
 
     const tiers = await riotClient.getSummonersTier(puuid);
 
-    const [soloTier, flexTier] = tiers;
+    const soloTier = tiers.find(
+      (tier) => tier.queueType === "RANKED_SOLO_5x5"
+    ) as League;
+    const flexTier = tiers.find(
+      (tier) => tier.queueType === "RANKED_FLEX_SR"
+    ) as League;
 
     console.log("[v0] 소환사 티어 조회 성공:", soloTier, flexTier);
 
