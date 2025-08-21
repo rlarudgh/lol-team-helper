@@ -28,11 +28,6 @@ RIOT_API_KEY=your_riot_api_key
 
 1. `/app/api/summoner/route.ts`에서 Riot API를 통해 소환사 정보를 조회합니다.
 
-## Supabase DB 연동
-
-- Supabase 클라이언트는 환경변수로 설정된 URL과 Key를 사용합니다.
-- player가 추가될 때 자동으로 DB에 저장됩니다.
-
 ## 개발 및 실행
 
 1. 의존성 설치
