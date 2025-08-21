@@ -1,5 +1,5 @@
-import Footer from "@/components/ui/footer";
-import { MatchBoard } from "@/widgets/match-board";
+import Footer from "@/components/ui/footer.ui";
+import { MatchBoard } from "@/widgets/match-board/match-board.ui";
 
 export default function HomePage() {
   return (

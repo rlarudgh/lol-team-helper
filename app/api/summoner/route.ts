@@ -1,9 +1,9 @@
 "use server";
 
 import { type NextRequest, NextResponse } from "next/server";
-import { RiotApiClient } from "@/shared/api/riot-client";
-import type { Player, Tier } from "@/shared/types";
-import type { League } from "@/shared/types/riot-api";
+import { RiotApiClient } from "@/shared/api/riot-client.api";
+import type { Player, Tier } from "@/shared/types/team-player.types";
+import type { League } from "@/shared/types/riot-api.types";
 
 const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
