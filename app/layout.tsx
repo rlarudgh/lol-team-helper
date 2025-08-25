@@ -21,6 +21,7 @@ html {
   --font-mono: ${GeistMono.variable};
 }
         `}</style>
+        <link rel="manifest" href="./manifest.ts" />
       </head>
       <body>{children}</body>
     </html>
