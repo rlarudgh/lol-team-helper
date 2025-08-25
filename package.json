@@ -8,7 +8,8 @@
     "lint": "next lint",
     "start": "next start",
     "find:not-used": "next-unused",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -70,6 +71,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^5.0.1",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "next-unused": "^0.0.6",
     "postcss": "^8.5",

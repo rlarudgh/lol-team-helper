@@ -69,6 +69,7 @@ const RAW_RUNTIME_STATE =
           ["date-fns", "npm:4.1.0"],\
           ["embla-carousel-react", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:8.5.1"],\
           ["geist", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:1.4.2"],\
+          ["husky", "npm:9.1.7"],\
           ["input-otp", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:1.4.1"],\
           ["jsdom", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:26.1.0"],\
           ["lucide-react", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:0.454.0"],\
@@ -5676,6 +5677,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["husky", [\
+      ["npm:9.1.7", {\
+        "packageLocation": "../../.yarn/berry/cache/husky-npm-9.1.7-5b02eaabc4-10c0.zip/node_modules/husky/",\
+        "packageDependencies": [\
+          ["husky", "npm:9.1.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["iconv-lite", [\
       ["npm:0.6.3", {\
         "packageLocation": "../../.yarn/berry/cache/iconv-lite-npm-0.6.3-24b8aae27e-10c0.zip/node_modules/iconv-lite/",\
@@ -6550,6 +6560,7 @@ const RAW_RUNTIME_STATE =
           ["date-fns", "npm:4.1.0"],\
           ["embla-carousel-react", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:8.5.1"],\
           ["geist", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:1.4.2"],\
+          ["husky", "npm:9.1.7"],\
           ["input-otp", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:1.4.1"],\
           ["jsdom", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:26.1.0"],\
           ["lucide-react", "virtual:f26804631bf9ffe86abcd52bc46d87bc63f15a2139c374718eae8eb05b3bac63974b1836bb868b7a54a8acb16d44deee2b5328b1f39bcf49da309f17c93e33de#npm:0.454.0"],\
