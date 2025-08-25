@@ -26,7 +26,7 @@ export function middleware(request: NextRequest) {
   if (isBot) {
     const response = NextResponse.next();
     response.headers.set("x-is-bot", "true");
-    console.log("Bot detected!");
+    console.warn("Bot detected!");
     return response;
   }
 

@@ -61,14 +61,6 @@ export class RiotApiClient {
     >(`/lol/league/v4/entries/by-puuid/${encryptedPUUID}`);
   }
 
-  /*************  ✨ Windsurf Command ⭐  *************/
-  /**
-   * Retrieves the summoner information for the given PUUID.
-   * @param encryptedPUUID The PUUID of the summoner.
-   * @returns A promise that resolves with the summoner information.
-   * @throws An error if the request fails.
-   */
-  /*******  dfd3373a-16ff-44bb-94f9-b4d9d98545bf  *******/
   async getSummonersInfo(encryptedPUUID: Readonly<string>) {
     return this.makeRequestKR<
       import("../types/riot-api.types").RiotProfileInfo
