@@ -39,6 +39,7 @@ export class RiotApiClient {
 
     if (!response.ok) {
       const error = await response.json();
+      console.error(error);
       throw new Error(
         `Riot API Error: ${error.status?.message || "Unknown error"}`
       );
